@@ -1,9 +1,9 @@
 package com.coastcapital.jmac;
 
 import com.coastcapital.hmac.MDXHMACUtilities;
+import com.coastcapital.hmac.HMACHash;
 import org.junit.Test;
 
-import java.security.NoSuchAlgorithmException;
 
 import static org.junit.Assert.assertEquals;
 
@@ -41,5 +41,20 @@ public class MDXHMACUtilitiesTest {
         }
 
         assertEquals("HMAC Signature Not Equal","e47928dcd29e494116961ad12884c8fd7aae07f2",hmacSignature);
+    }
+
+    @Test
+    public void testHMACHash() {
+
+        String hmacHash = "";
+        String secretKey = "QUJDREVGR0hJSktMTU5PUFFSU1RVVldYWVo3ODkwMTI=";
+        String message = "POST\ne9a179f879165fd64bdeaa57032d342f\napplication/vnd.moneydesktop.mdx.v5+xml\n1382975431\napplication/vnd.moneydesktop.mdx.v5+xml\n\n/sessions";
+        try{
+            hmacHash=HMACHash.generateHash(secretKey,message);
+        } catch(Exception ex){
+            assertEquals("Exception Occured in generateHash",1,2);
+        }
+
+        assertEquals("HMAC Hash Not Equal","e47928dcd29e494116961ad12884c8fd7aae07f2",hmacHash;
     }
 }
